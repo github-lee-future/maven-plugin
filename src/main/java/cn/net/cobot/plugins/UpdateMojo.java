@@ -39,8 +39,8 @@ import java.util.List;
  * Goal which touches a timestamp file.
  *
  * @goal touch
- * 
  * @phase process-sources
+ * @author lym
  */
 // 标记mojo，mojo名称和执行时机
 @Mojo(name = "updateFile", defaultPhase = LifecyclePhase.PACKAGE)
@@ -58,6 +58,8 @@ public class UpdateMojo
      */
     @Parameter
     private String packag;
+    @Parameter
+    private boolean printParam;
 
     // 主要业务方法
     @Override
@@ -66,7 +68,8 @@ public class UpdateMojo
     {
         Log log = getLog();
         log.info("--- excute updateFile plugin ---");
-        log.info("rootpath: " + rootPath);
+        if (printParam)
+            printParam(log);
         if (files != null) {
             try {
                 for (String fileName:
@@ -84,6 +87,15 @@ public class UpdateMojo
                 log.info("excute updateFile plugin failed");
             }
         }
+    }
+
+    private void printParam(Log log) {
+        log.info("rootpath: " + rootPath);
+        log.info("待修改的文件：");
+        for (String fileName: files) {
+            log.info("  " + fileName);
+        }
+        log.info("packag: " + packag);
     }
 
     /**
