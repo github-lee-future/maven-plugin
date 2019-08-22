@@ -34,4 +34,17 @@
           <version>1.6.1</version>
       </dependency>
   </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>cobot-releases</id>
+      <name>cobot-releases</name>
+      <url>http://192.168.1.193:8086/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>cobot-snapshots</id>
+      <name>cobot-snapshots</name>
+      <url>http://192.168.1.193:8086/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
